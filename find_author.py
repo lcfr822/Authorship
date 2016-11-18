@@ -79,28 +79,38 @@ def avg_sentence_complexity(text):
     
     
 def get_valid_filename(prompt):
+    #FIRST EXECUTED FUNCTION: FILES IN QUESTION ARE THE MYSTERY WRITINGS#
     '''Use prompt (a string) to ask the user to type the name of a file. If
     the file does not exist, keep asking until they give a valid filename.
     The filename must include the path to the file.
     Return the name of that file.'''
-    
     # To do: Complete this function's body to meet its specification.
     # use: print ("That file does not exist: " + filename)
-    filename = input(prompt)
+    filename_validated = False
+    while not filename_validated:
+        filename = input(prompt)
+        if(os.path.exists(filename) == True):
+            filename_validated = True
+        else:
+            print('That file does not exist: ', filename)
     return filename
-    
     # Do not use any other input or output statements in this function.
 
     
 def read_directory_name(prompt):
+    #SECOND EXECUTED FUNCTION: DIRECTORY IN QUESTION IS STATS FILES LOCATION#
     '''Use prompt (a string) to ask the user to type the name of a directory. If
     the directory does not exist, keep asking until they give a valid directory.
     '''
-    
     # To do: Complete this function's body to meet its specification.
     # use print ("That directory does not exist: " + dirname)
-
-    dirname = input(prompt)
+    directory_validated = False
+    while not directory_validated:
+        dirname = input(prompt)
+        if(os.path.exists(dirname) == True):
+            directory_validated = True
+        else:
+            print("That directory does not exist: ", dirname)
     return dirname
 
     
@@ -137,10 +147,11 @@ def read_signature(filename):
         
 
 if __name__ == '__main__':
+    #EXECUTION STARTS HERE#
     
-    prompt = 'enter the name of the file with unknown author:'
+    prompt = 'Enter the name and path of the file with unknown author:'
     mystery_filename = get_valid_filename(prompt)
-
+    
     # readlines gives us a list of strings one for each line of the file
     text = open(mystery_filename, 'r').readlines()
     
